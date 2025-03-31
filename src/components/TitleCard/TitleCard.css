@@ -1,0 +1,23 @@
+.title_card {
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+}
+
+.card_list {
+  display: flex;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  gap: 2vh;
+  position: relative;
+}
+
+
+.card img {
+  border-radius: 1vh;
+}
+
+.card p {
+  position: absolute;
+  /* top: 40%; */
+  bottom: 10%;
+}

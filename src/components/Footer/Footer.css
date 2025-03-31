@@ -1,0 +1,24 @@
+.footer {
+  padding: 4rem 2rem;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-icons img {
+  height: 30px;
+  width: 50px;
+  object-fit: contain;
+}
+
+.footer-icons {
+  display: flex;
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footerLogo {
+  height: 100%;
+}

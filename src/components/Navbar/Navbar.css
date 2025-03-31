@@ -1,0 +1,84 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 3vh;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7)10%, transparent);
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+}
+
+.log-container {
+  width: 33.33%;
+}
+
+.logo {
+  width: 100px;
+}
+
+.logo img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.nav-menu {
+  width: 33.33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-menu ul {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-menu ul li {
+  list-style: none;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 5vh;
+  width: 33.33%;
+  justify-content: end;
+  align-items: center;
+}
+
+.navbar-right .icons {
+  height: 20px;
+  width: 20px;
+  object-fit: cover;
+}
+
+.navbar-profile {
+  position: relative;
+  display: flex;
+  gap: 2vh;
+}
+
+.navbar-right .dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: max-content;
+  background: #191919;
+  padding: .5rem 1rem;
+  border-radius: 2px;
+  text-decoration: underline;
+  z-index: 1;
+  display: none;
+}
+
+.navbar-right .dropdown p {
+  font-size: .9rem;
+  cursor: pointer;
+}
+
+.navbar-profile:hover .dropdown {
+  display: block;
+}
