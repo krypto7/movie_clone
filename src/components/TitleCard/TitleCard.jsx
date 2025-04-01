@@ -2,18 +2,30 @@ import React, { useEffect, useRef, useState } from "react";
 import "./TitleCard.css";
 import cards_data from "../../assets/cards/Cards_data";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-function TitleCard({ title }) {
+function TitleCard({ title, category }) {
   const cardRef = useRef();
-  const [movies, setMovies] = useState([]);
+  const [apiData, setApiData] = useState([]);
 
-  const axiosInstance = axios.create({
-    baseURL: "https://api.themoviedb.org/3",
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_IMDB_ACCESS_TOKEN}`,
-    },
-  });
+  const fetchMovies = async () => {
+    const options = {
+      method: "GET",
+      url: `https://api.themoviedb.org/3/movie/${
+        category ? category : now_playing
+      }?language=en-US&page=1`,
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${import.meta.env.VITE_IMDB_ACCESS_TOKEN}`,
+      },
+    };
+    try {
+      const response = await axios.request(options);
+      setApiData(response.data?.results);
+    } catch (error) {
+      console.error("===>error fetching movie", error);
+    }
+  };
 
   const handleWheel = (e) => {
     e.preventDefault();
@@ -21,23 +33,32 @@ function TitleCard({ title }) {
   };
 
   useEffect(() => {
-    cardRef.current.addEventListener("wheel", handleWheel);
-  });
+    fetchMovies();
+    if (cardRef.current) {
+      cardRef.current.addEventListener("wheel", handleWheel);
+    }
+  }, []);
 
   return (
     <div className="title_card">
       <h2>{title ? title : "Popular on Netflix"}</h2>
       <div className="card_list">
-        {cards_data ? (
-          cards_data.map((item, index) => (
-            <div key={index} className="card" ref={cardRef}>
-              <img src={item.image} />
-              <p>{item.name}</p>
-            </div>
-          ))
-        ) : (
-          <div>No Data available</div>
-        )}
+        {apiData &&
+          apiData.map((item, index) => (
+            <Link
+              to={`/player/${item.id}`}
+              className="card"
+              ref={cardRef}
+              key={index}
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
+                alt=""
+                srcset=""
+              />
+              <p>{item?.original_title}</p>
+            </Link>
+          ))}
       </div>
     </div>
   );

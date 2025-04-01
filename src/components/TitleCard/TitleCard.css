@@ -11,9 +11,16 @@
   position: relative;
 }
 
+.card {
+  height: 25vh;
+  width: 100%;
+}
 
 .card img {
+  height: 100%;
+  /* width: 100%; */
   border-radius: 1vh;
+  object-fit: cover;
 }
 
 .card p {

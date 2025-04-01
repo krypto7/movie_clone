@@ -32,14 +32,13 @@ function Home() {
               More info
             </button>
           </div>
-          <TitleCard />
+          <TitleCard title={"Now Playing"} category={"now_playing"} />
         </div>
       </div>
       <div className="more-cards">
-        <TitleCard title={"Blockbaster Movies"} />
-        <TitleCard title={"Only on Netflix"} />
-        <TitleCard title={"Upcoming"} />
-        <TitleCard title={"Top pics for you"} />
+        <TitleCard title={"Top Rated"} category={"top_rated"} />
+        <TitleCard title={"Popular"} category={"popular"} />
+        <TitleCard title={"Upcoming"} category={"upcoming"} />
       </div>
       <Footer />
     </div>
