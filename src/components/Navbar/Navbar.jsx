@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import searchIcon from "../../assets/search_icon.svg";
 import bellIcon from "../../assets/bell_icon.svg";
 import profileImage from "../../assets/profile_img.png";
 import dropDownIcon from "../../assets/caret_icon.svg";
+import { logout } from "../../../firebase";
 
 function Navbar() {
+  const navref = useRef();
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 80) {
+        navref.current.classList.add("nav-dark");
+      } else {
+        navref.current.classList.remove("nav-dark");
+      }
+    });
+  }, []);
+
   return (
-    <div className="navbar">
+    <div className="navbar" ref={navref}>
       <div className="log-container">
         <div className="logo">
           <img src={logo} alt="" srcset="" />
@@ -33,7 +46,13 @@ function Navbar() {
           <img src={profileImage} alt="" srcset="" className="profile" />
           <img src={dropDownIcon} alt="" srcset="" />
           <div className="dropdown">
-            <p>logout</p>
+            <p
+              onClick={() => {
+                logout();
+              }}
+            >
+              logout
+            </p>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./TitleCard.css";
-import cards_data from "../../assets/cards/Cards_data";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -27,16 +26,8 @@ function TitleCard({ title, category }) {
     }
   };
 
-  const handleWheel = (e) => {
-    e.preventDefault();
-    cardRef.current.scrollLeft += e.deltaY;
-  };
-
   useEffect(() => {
     fetchMovies();
-    if (cardRef.current) {
-      cardRef.current.addEventListener("wheel", handleWheel);
-    }
   }, []);
 
   return (
@@ -45,12 +36,7 @@ function TitleCard({ title, category }) {
       <div className="card_list">
         {apiData &&
           apiData.map((item, index) => (
-            <Link
-              to={`/player/${item.id}`}
-              className="card"
-              ref={cardRef}
-              key={index}
-            >
+            <Link to={`/player/${item.id}`} className="card" key={index}>
               <img
                 src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
                 alt=""
